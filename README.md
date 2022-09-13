@@ -1,4 +1,4 @@
-# Python Special Topicts 🐍
+# Python Special Topics 🐍
 
 ## Packages
 
