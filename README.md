@@ -1,66 +1,11 @@
-# Python Template
+# Python Special Topicts 🐍
 
-A [simple] [general-purpose] Python template 🐍🚀🎉🦕
+## Packages
 
-# How to use
+- [❎] [asyncio](https://docs.python.org/3/library/asyncio.html)
+- [✅] [threading](https://docs.python.org/3/library/threading.html)
+- [✅] [multiprocessing](https://docs.python.org/3/library/multiprocessing.html)
+- [✅] [concurrent.futures](https://docs.python.org/3/library/concurrent.futures.html) 
 
-- Linux and Mac
-  Use GCC Makefile
+## Python internals
 
-- Install Makefile
-
-  https://community.chocolatey.org/packages/make
-
-  http://www.cygwin.com/
-
-### Bootstrap
-
-```
-    make env
-```
-
-```
-    source env/bin/activate
-```
-
-```
-    make check
-```
-
-```
-    make test
-```
-
-### Install a package
-
-```
-    make piu numpy matplotlib scipy
-```
-
-## Features
-
-- Linter: Pylint
-- Formatter: Black
-- CI: GitHub Actions
-
-### ToDo
-
-- [x] Formatter: Black + isort
-- [x] Type checker: MyPy
-- [x] Linter: Pylint
-- [x] GitHub Actions
-- [x] Git Hooks
-- [x] PyPI Publish
-- [x] Flit
-- [x] Poetry
-
-### Git
-
-Git hooks are available in ./scripts/.githooks
-
-```
-    chmod +x ./scripts/.githooks/script
-
-    git config core.hooksPath ./scripts/.githooks
-
-```
