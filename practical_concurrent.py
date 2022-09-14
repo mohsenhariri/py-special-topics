@@ -1,6 +1,6 @@
 import concurrent.futures
 
-from utility import download, exec_time
+from utility import download, time_profiler
 
 urls = [
     "https://images.unsplash.com/photo-1551214359-b81f66a605b1",
@@ -15,7 +15,7 @@ urls = [
 ]
 
 
-@exec_time
+@time_profiler
 def run():
     for url in urls:
         download(url)
@@ -24,7 +24,7 @@ def run():
 run()
 
 
-@exec_time
+@time_profiler
 def run_thread():
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(download, urls)
@@ -33,7 +33,7 @@ def run_thread():
 run_thread()
 
 
-@exec_time
+@time_profiler
 def run_process():
     with concurrent.futures.ProcessPoolExecutor() as executor:
         executor.map(download, urls)

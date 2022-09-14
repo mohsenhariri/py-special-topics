@@ -1,11 +1,12 @@
 import time
+import tracemalloc
 import urllib.request
 import uuid
 from pathlib import Path
 from shutil import copyfileobj
 
 
-def exec_time(f):
+def time_profiler(f):
     def wrap(*args, **kwargs):
         begin = time.perf_counter()
         wrap_returned_value = f(*args, **kwargs)
@@ -16,10 +17,16 @@ def exec_time(f):
     return wrap
 
 
-def heavy_process(caller_id: int):
-    time.sleep(1)
-    print(f"{caller_id} was done.")
-    return caller_id
+def memory_profiler(f):
+    def wrap(*args, **kwargs):
+        tracemalloc.start()
+        wrap_returned_value = f(*args, **kwargs)
+        snapshot = tracemalloc.take_snapshot()
+        stats = snapshot.statistics(key_type="lineno", cumulative=True)
+        print(f"Allocated memory: {stats[0]}")
+        return wrap_returned_value
+
+    return wrap
 
 
 def download(url: str):

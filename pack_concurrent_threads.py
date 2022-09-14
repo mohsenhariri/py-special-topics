@@ -1,8 +1,12 @@
 import concurrent.futures
-from utility import exec_time, heavy_process
+
+from tasks import idle_process
+from utility import time_profiler
+
+heavy_process = idle_process
 
 
-@exec_time
+@time_profiler
 def run_with_concurrent():
     with concurrent.futures.ThreadPoolExecutor() as executor:
         e1 = executor.submit(heavy_process, 1)
@@ -15,7 +19,7 @@ def run_with_concurrent():
 run_with_concurrent()
 
 
-@exec_time
+@time_profiler
 def run_with_concurrent_n(n: int):
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executors = [executor.submit(heavy_process, i) for i in range(n)]
@@ -26,7 +30,7 @@ def run_with_concurrent_n(n: int):
 run_with_concurrent_n(10)
 
 
-@exec_time
+@time_profiler
 def run_with_concurrent_resloved(n: int):
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executors = [executor.submit(heavy_process, i) for i in range(n)]
@@ -40,7 +44,7 @@ def run_with_concurrent_resloved(n: int):
 run_with_concurrent_resloved(10)
 
 
-@exec_time
+@time_profiler
 def run_with_concurrent_map(n: int):
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(heavy_process, [i for i in range(n)])
